@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4401DB2A272006E300D1B287 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4401DB29272006E300D1B287 /* main.cpp */; };
+		4401DB322720081B00D1B287 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4401DB302720081A00D1B287 /* functions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		4401DB26272006E300D1B287 /* FPGA_Training */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FPGA_Training; sourceTree = BUILT_PRODUCTS_DIR; };
 		4401DB29272006E300D1B287 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4401DB302720081A00D1B287 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
+		4401DB312720081B00D1B287 /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,8 @@
 		4401DB1D272006E300D1B287 = {
 			isa = PBXGroup;
 			children = (
+				4401DB302720081A00D1B287 /* functions.cpp */,
+				4401DB312720081B00D1B287 /* functions.h */,
 				4401DB28272006E300D1B287 /* FPGA_Training */,
 				4401DB27272006E300D1B287 /* Products */,
 			);
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4401DB2A272006E300D1B287 /* main.cpp in Sources */,
+				4401DB322720081B00D1B287 /* functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
