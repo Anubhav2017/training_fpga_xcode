@@ -58,12 +58,12 @@ void backward_softmax(float* dz, float* da, float* a,int size_t){
     }
 }
 
-float mse_loss(float* pred, float* truth, int dim){
+float mse_loss(float* pred, float* truth, int n){
     float loss=0;
-    for(int i=0;i<dim;i++){
+    for(int i=0;i<n;i++){
         loss+= pow(pred[i]-truth[i],2);
     }
-    loss = loss/dim;
+//    loss = loss/n;
     return loss;
 }
 
