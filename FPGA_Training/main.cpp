@@ -12,18 +12,15 @@
 #include "math.h"
 #include <algorithm>
 #include <random>
-
+//#include <opencv2/core.hpp>
 using namespace std;
 
 void sine_model(){
-    
-    int nepochs=5;
-    
+        
     float lr = 0.001;
     float w1[8]={};
     float w2[8]={};
-    float dw1[8]={};
-    float dw2[8]={};
+
     
     for(int i=0;i<8;i++){
         w1[i]= 0.01;
@@ -32,8 +29,7 @@ void sine_model(){
     
     float b1[1]={0.01};
     float b2[1]={0.01};
-    float db1[1]={};
-    float db2[1]={};
+
     
     float h1[8]={};
     float dh1[8]={};
@@ -66,7 +62,7 @@ void sine_model(){
     
     cout<<"Dataset created"<<'\n';
     
-    for(int i=0;i<10;i++){
+    for(int i=0;i<20;i++){
         
         cout<<"Epoch "<<i<<" started"<<'\n';
         
@@ -80,7 +76,7 @@ void sine_model(){
         }
         
         //calucalating mean squared error over the batch
-        cout<<mse_loss(ypred, ytrue, 1000)<<'\n';
+        cout<<"mse loss= " << mse_loss(ypred, ytrue, 1000)<<'\n';
         
         //iterating over batch
         for (int j=0;j<1000;j++) {
@@ -92,22 +88,15 @@ void sine_model(){
             forward_fcc(x, w1, h1, b1, 1, 8);
             forward_fcc(h1, w2, y, b2, 8, 1);
             
-            
             //error calculation
             dy[0] = y[0]-ytrue[j];
             
             //bacpropagation
-            backward_fcc(h1, w2, y, b2, dh1, dy, db2, dw2, 8, 1);
-            backward_fcc(x, w1, h1, b1, dx, dh1, db1, dw1, 1, 8);
+            backward_fcc(h1, w2, y, b2, dh1, dy, 8, 1,lr);
+            backward_fcc(x, w1, h1, b1, dx, dh1, 1, 8,lr);
             
             //updating weights and biases
-            for(int k=0;k<8;k++){
-                w1[k] -= lr*dw1[k];
-                w2[k] -= lr*dw2[k];
-                h1[k] -= lr*dh1[k];
-            }
-            b1[0] -=lr*db1[0];
-            b2[0] -=lr*db2[0];
+            
             
         }
         
