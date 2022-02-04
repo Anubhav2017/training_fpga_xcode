@@ -13,7 +13,7 @@ void forward_fcc(float* x, float* w, float* y, float* b, int xdim, int ydim){
 
 }
 
-void backward_fcc(float* x, float* w, float* y, float* b, float* dx, float* dy, int xdim, int ydim,float lr){
+void backward_fcc(float* x, float* w, float* b, float* dx, float* dy, int xdim, int ydim,float lr){
     //compute gradient of activations
     
     float db[ydim];

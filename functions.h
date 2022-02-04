@@ -3,7 +3,7 @@
 
 void forward_fcc(float* x, float* w, float* y, float* b, int xdim, int ydim);
 
-void backward_fcc(float* x, float* w, float* y, float* b, float* dx, float* dy, int xdim, int ydim,float lr);
+void backward_fcc(float* x, float* w, float* b, float* dx, float* dy, int xdim, int ydim,float lr);
 
 void forward_softmax(float* z, float* a, int size_t);
 

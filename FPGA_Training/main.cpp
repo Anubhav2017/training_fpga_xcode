@@ -92,8 +92,8 @@ void sine_model(){
             dy[0] = y[0]-ytrue[j];
             
             //bacpropagation
-            backward_fcc(h1, w2, y, b2, dh1, dy, 8, 1,lr);
-            backward_fcc(x, w1, h1, b1, dx, dh1, 1, 8,lr);
+            backward_fcc(h1, w2 , b2, dh1, dy, 8, 1,lr);
+            backward_fcc(x, w1, b1, dx, dh1, 1, 8,lr);
             
             //updating weights and biases
             
