@@ -1,34 +1,38 @@
 #include<iostream>
 #include<math.h>
 using namespace std;
-void forward_fcc(float* x, float* w, float* y, float* b, int xdim, int ydim){
+void forward_fcc(float* x, float** w, float* y, float* b, int xdim, int ydim){
 
     for(int i=0; i< ydim;i++){
         y[i]= b[i];
 
         for (int j=0; j<xdim;j++){
-            y[i]+= w[i*xdim+j]*x[j];
+            y[i]+= w[i][j]*x[j];
         }
     }
 
 }
 
-void backward_fcc(float* x, float* w, float* b, float* dx, float* dy, int xdim, int ydim,float lr){
+void backward_fcc(float* x, float** w, float* b, float* dx, float* dy, int xdim, int ydim,float lr){
     //compute gradient of activations
     
     float db[ydim];
-    float dw[xdim*ydim];
+    float dw[ydim][xdim];
     
     for(int i=0;i<xdim;i++){
-        for(int j=0;j<ydim;j++){
-            dx[i] = dy[j] * w[i+j*xdim];
+        dx[i]=0;
+    }
+    
+    for(int j=0;j<xdim;j++){
+        for(int i=0;i<ydim;i++){
+            dx[j] += dy[i] * w[i][j];
         }
         
     }
     //compute gradient of weights
     for(int i=0;i<ydim;i++){
         for(int j=0;j<xdim;j++){
-            dw[i*xdim+j] = dy[i]*x[j];
+            dw[i][j] = dy[i]*x[j];
         }
     }
 
@@ -40,13 +44,37 @@ void backward_fcc(float* x, float* w, float* b, float* dx, float* dy, int xdim, 
     for(int i=0;i<ydim;i++){
         for(int j=0;j<xdim;j++){
             
-            w[i*xdim+j]-=lr*dw[i*xdim+j];
+            w[i][j]-=lr*dw[i][j];
             
         }
         
         b[i] -= lr*db[i];
     }
 }
+
+void forward_relu(float* x, float* y, int dim){
+    for(int i=0;i<dim;i++){
+        if(x[i]>0)
+            y[i]=x[i];
+        else{
+            y[i]=0;
+        }
+//        y[i]=x[i];
+    }
+}
+
+void backward_relu(float* x, float* dx, float* dy, int dim){
+    for(int i=0;i<dim;i++){
+        if (x[i] >= 0){
+            dx[i] = dy[i];
+        }
+        else{
+            dx[i]=0;
+        }
+//        dx[i]=dy[i];
+    }
+}
+
 
 void forward_softmax(float* z, float* a, int size_t){
 
@@ -77,7 +105,7 @@ float mse_loss(float* pred, float* truth, int n){
     for(int i=0;i<n;i++){
         loss+= pow(pred[i]-truth[i],2);
     }
-//    loss = loss/n;
+    loss = loss/n;
     return loss;
 }
 

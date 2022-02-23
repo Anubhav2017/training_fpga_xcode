@@ -1,13 +1,17 @@
 #include<iostream>
 #include<math.h>
 
-void forward_fcc(float* x, float* w, float* y, float* b, int xdim, int ydim);
+void forward_fcc(float* x, float** w, float* y, float* b, int xdim, int ydim);
 
-void backward_fcc(float* x, float* w, float* b, float* dx, float* dy, int xdim, int ydim,float lr);
+void backward_fcc(float* x, float** w, float* b, float* dx, float* dy, int xdim, int ydim,float lr);
 
 void forward_softmax(float* z, float* a, int size_t);
 
 void backward_softmax(float* dz, float* da, float* a,int size_t);
+
+void forward_relu(float* x, float* y, int dim);
+
+void backward_relu(float* x, float* dx, float* dy, int dim);
 
 float mse_loss(float* pred, float* truth, int dim);
 
