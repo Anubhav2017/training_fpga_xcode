@@ -35,6 +35,7 @@
 		4433B6F82812988600A0314F /* layers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = layers.h; sourceTree = "<group>"; };
 		4433B6F928129A4600A0314F /* x_train.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = x_train.txt; sourceTree = "<group>"; };
 		4433B6FA28129A4600A0314F /* y_train.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = y_train.txt; sourceTree = "<group>"; };
+		444B79C42815C62A00557411 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 				4433B6F42812842C00A0314F /* nn.cpp */,
 				4433B6F22812842C00A0314F /* read.cpp */,
 				4401DB29272006E300D1B287 /* main.cpp */,
+				444B79C42815C62A00557411 /* .gitignore.md */,
 				4433B6F928129A4600A0314F /* x_train.txt */,
 				4433B6FA28129A4600A0314F /* y_train.txt */,
 			);

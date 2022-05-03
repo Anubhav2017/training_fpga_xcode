@@ -196,7 +196,7 @@ void backward_fcc(vector<float> &x, vector<float> &w, vector<float> &dx, vector<
 }
 
 
-void backward_conv(vector<float> &x, vector<float> &w, vector<float> &y, vector<float> &dx,vector<float> &dw,vector<float> &db, vector<float> &dy , int F, int C, int H, int W, int FH, int FW){
+void backward_conv(vector<float> &x, vector<float> &w, vector<float> &dx,vector<float> &dw,vector<float> &db, vector<float> &dy , int F, int C, int H, int W, int FH, int FW){
 
     //populate cache
     float xbuf[C][H][W];
@@ -269,6 +269,8 @@ void backward_conv(vector<float> &x, vector<float> &w, vector<float> &y, vector<
     for(int i=0;i<F;i++){
         db[i] = dbbuf[i];
     }
+    float tmp1;
+    float tmp2;
 
     // compute gradients
 
@@ -278,8 +280,12 @@ void backward_conv(vector<float> &x, vector<float> &w, vector<float> &y, vector<
                 for(int c=0;c<C;c++){
                     for(int fh=0;fh<FH;fh++){
                         for(int fw=0;fw<FW;fw++){
-                            dwbuf[f][c][fh][fw] += dybuf[f][h][w]*xbuf[c][h+fh][w+fw];
-                            dxbuf[c][h+fh][w+fw] += dybuf[f][h][w]*wbuf[f][c][h+fh][w+fw];
+                            
+                            tmp1=dybuf[f][h][w]*xbuf[c][h+fh][w+fw];
+                            tmp2=dybuf[f][h][w]*wbuf[f][c][fh][fw];
+//                            cout << "h+fh=" << h+fh << " w+fw=" << w+fw << " wval=" << wbuf[f][c][fh][fw] << " dyval="<<dybuf[f][h][w]<<" tmp2="<<tmp2<<'\n' ;
+                            dwbuf[f][c][fh][fw] += tmp1;
+                            dxbuf[c][h+fh][w+fw] += tmp2;
                         }
                     }
                 }

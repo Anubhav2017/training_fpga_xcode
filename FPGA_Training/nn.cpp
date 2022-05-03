@@ -127,7 +127,7 @@ public:
                 backward_fcc(activations[i-1], weights[i], grads_activations[i-1], grads_activations[i], grads_weights[i],grads_bias[i], shapes[i][0], shapes[i][1]);
             }
             else if(layers[i]=="conv"){
-                backward_conv(activations[i-1], weights[i],activations[i], grads_activations[i-1], grads_weights[i], grads_bias[i],grads_activations[i],  shapes[i][0],shapes[i][1], shapes[i][2], shapes[i][3], shapes[i][4], shapes[i][5]);
+                backward_conv(activations[i-1], weights[i], grads_activations[i-1], grads_weights[i], grads_bias[i],grads_activations[i],  shapes[i][0],shapes[i][1], shapes[i][2], shapes[i][3], shapes[i][4], shapes[i][5]);
             }
             else if(layers[i]=="relu"){
                 backward_relu(activations[i-1], grads_activations[i-1], grads_activations[i], shapes[i][0]);
